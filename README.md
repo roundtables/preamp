@@ -20,12 +20,20 @@ The configuration allows you to setup some variables that are hard-coded and oth
 
 ```json
 {
+  "config": {
+    "output": "src/aws-exports.js"
+  },
+  "fields": {
     "HardCoded": {"Value": "ORANGE"},
-    "UserPool": {"Type": "cf", "Value": "UserPoolClient-Id"}
+      "UserPool": {"Type": "cf", "Value": "UserPoolClient-Id"}
+    }
+  }
 }
 ```
 
 Just add a "Type"="cf" to any value you want in the export and specify the cloudformation export name.
+
+The `profile` and the `output` can be configured under `config`.
 
 #### cosmiconfig as part of your package.json
 

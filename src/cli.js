@@ -1,6 +1,7 @@
 import { docopt } from 'docopt'
 import path from 'path'
 import fs from 'fs'
+import { cosmiconfigSync } from 'cosmiconfig'
 
 import { createCloudFormationSDK } from './create-cloud-formation-sdk'
 import { getCloudFormationExports } from './get-cloud-formation-exports'
@@ -17,11 +18,29 @@ async function cli(args) {
   const cliargs = docopt(clidoc, {
     version: '0.1.1rc'
   })
-  const sourceFile = cliargs['--cloud-formation-to-import']
-  const targetFile = cliargs['--output'] || path.resolve(process.cwd(), 'aws-exports.js')
 
-  const cfSDK = await createCloudFormationSDK(cliargs['--profile'])
-  const { exportable, cloudFormationKeys } = extractSourceKeys(sourceFile)
+  const getJSON = (sourceFile) => {
+    if (!!sourceFile) {
+      try {
+        return JSON.parse(fs.readFileSync(sourceFile).toString())
+      } catch (e) {
+        console.error('Could not parse JSON', e)
+      } 
+    }
+    const cosmic = cosmiconfigSync('preamp').search()
+    return (cosmic && cosmic.config) || {}
+  }
+
+  const sourceFile = cliargs['--cloud-formation-to-import']
+  const defaults = getJSON(sourceFile)
+  
+  const preampConfig = defaults.config || {}
+  const preampSource = defaults.fields || {}
+  const awsProfile = cliargs['--profile'] || preampConfig.profile || null
+  const targetFile = cliargs['--output'] || preampConfig.output || path.resolve(process.cwd(), 'aws-exports.js')
+
+  const cfSDK = await createCloudFormationSDK(awsProfile)
+  const { exportable, cloudFormationKeys } = extractSourceKeys(preampSource)
   const allExports = await mergeCloudFormationExports(cfSDK, cloudFormationKeys, exportable)  
   try {
     await writeJS(allExports, targetFile)
