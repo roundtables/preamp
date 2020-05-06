@@ -1,6 +1,6 @@
 {
   "name": "@roundtables/preamp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate aws-exports in your CICD for your AWS Amplify SDK Client",
   "main": "src/index.js",
   "bin": {
