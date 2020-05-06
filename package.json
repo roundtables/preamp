@@ -1,0 +1,50 @@
+{
+  "name": "@roundtables/preamp",
+  "version": "1.0.0",
+  "description": "Generate aws-exports in your CICD for your AWS Amplify SDK Client",
+  "main": "src/index.js",
+  "bin": {
+    "@roundtables/preamp": "bin/preamp",
+    "preamp": "bin/preamp"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roundtables/preamp.git"
+  },
+  "keywords": [
+    "cli",
+    "amplify",
+    "aws",
+    "cicd"
+  ],
+  "author": "Behrang Dadsetan <ben@dadsetan.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roundtables/preamp/issues"
+  },
+  "preamp": {
+    "blue": {"Value": "ORANGE"},
+    "orange": {"Type": "cf", "Value": "UserPoolClient-Id"}
+},
+  "homepage": "https://github.com/roundtables/preamp#readme",
+  "dependencies": {
+    "@aws-sdk/credential-provider-ini": "^0.1.0-preview.1",
+    "aws-sdk": "^2.669.0",
+    "cosmiconfig": "^6.0.0",
+    "docopt": "^0.6.2",
+    "esm": "^3.2.25"
+  },
+  "devDependencies": {
+    "jest": "^26.0.0"
+  }
+}
