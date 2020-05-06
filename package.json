@@ -32,10 +32,6 @@
   "bugs": {
     "url": "https://github.com/roundtables/preamp/issues"
   },
-  "preamp": {
-    "blue": {"Value": "ORANGE"},
-    "orange": {"Type": "cf", "Value": "UserPoolClient-Id"}
-},
   "homepage": "https://github.com/roundtables/preamp#readme",
   "dependencies": {
     "@aws-sdk/credential-provider-ini": "^0.1.0-preview.1",

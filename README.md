@@ -40,13 +40,13 @@ If a file called `preamp.config.js` is found in the current directory or a paren
 The recommended way to run `preamp` is to use `npx`.
 
 ```shell
-$ npx preamp
+$ npx @roundtables/preamp
 ```
 
 When running locally against a specific non-default AWS profile, use the `--profile parameter`:
 
 ```shell
-$ npx preamp --profile <awsprofile>
+$ npx @roundtables/preamp --profile <awsprofile>
 ```
 
 ## Troubleshooting
@@ -60,7 +60,7 @@ The region is automatically setup by CodeBuild/Lambda and defaults to the region
 You can override the region used by prepending `AWS_REGION=<region>` to the preamp command. An example would be:
 
 ```shell
-AWS_REGION=ap-southeast-1 preamp
+AWS_REGION=ap-southeast-1 npx @roundtables/preamp
 ```
 
 ### Credentials are invalid
