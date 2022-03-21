@@ -9,16 +9,13 @@ const createCloudFormationSDK = async (passedProfile) => {
 
         if (passedProfile) {
             try {
-
                 const stsClient = new STSClient({
                     credentials: fromSSO({
                       profile: passedProfile,
                     }),
                     region: process.env.AWS_REGION,
                   });
-              
                 const credentials = await stsClient.config.credentials();    
-
                 AWS.config.update({ credentials })
             } catch (e) {
                 console.error('Could not use profile', passedProfile)
