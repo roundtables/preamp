@@ -15,7 +15,7 @@ async function cli(args) {
     preamp -h | --help | --version
   `
 
-  const cliargs = docopt(clidoc, { version: '2.0.1' })
+  const cliargs = docopt(clidoc, { version: '2.0.2' })
 
   const getJSON = (sourceFile) => {
     if (!!sourceFile) {
