@@ -34,8 +34,9 @@
   },
   "homepage": "https://github.com/roundtables/preamp#readme",
   "dependencies": {
-    "@aws-sdk/credential-provider-ini": "^0.1.0-preview.1",
-    "aws-sdk": "^2.669.0",
+    "@aws-sdk/client-sts": "^3.54.1",
+    "@aws-sdk/credential-providers": "^3.54.1",
+    "aws-sdk": "^2.1096.0",
     "cosmiconfig": "^6.0.0",
     "docopt": "^0.6.2",
     "esm": "^3.2.25"

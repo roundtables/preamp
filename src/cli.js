@@ -11,7 +11,7 @@ import { extractSourceKeys } from './extract-source'
 async function cli(args) {
   const clidoc = `
   Usage:
-    preamp [--cloud-formation-to-import=<preamp.config.js>] [--output=<aws-exports.js>]
+    preamp [--profile=<profile>] [--cloud-formation-to-import=<preamp.config.js>] [--output=<aws-exports.js>]
     preamp -h | --help | --version
   `
 
@@ -34,9 +34,10 @@ async function cli(args) {
   
   const preampConfig = defaults.config || {}
   const preampSource = defaults.fields || {}
+  const awsProfile = cliargs['--profile'] || preampConfig.profile || null
   const targetFile = cliargs['--output'] || preampConfig.output || path.resolve(process.cwd(), 'aws-exports.js')
 
-  const cfSDK = await createCloudFormationSDK()
+  const cfSDK = await createCloudFormationSDK(awsProfile)
   const { exportable, cloudFormationKeys } = extractSourceKeys(preampSource)
   const allExports = await mergeCloudFormationExports(cfSDK, cloudFormationKeys, exportable)  
   try {
